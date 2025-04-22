@@ -1,0 +1,21 @@
+services:
+  inotify-trigger:
+    image: foxxmd/inotify-proxy:latest
+    volumes:
+      - ./data:/data
+      - ./test-sync:/sync
+    environment:
+      - INOTIFY_TARGET=/data/
+      - INOTIFY_SCRIPT=/trigger.sh
+      - INOTIFY_QUIET=false
+      - INOTIFY_CFG_QUIET=false
+      - INOTIFY_CFG_EVENTS=modify attrib delete delete_self
+    configs:
+      - source: trigger.sh
+        target: /trigger.sh
+
+configs:
+  trigger.sh:
+    content: |
+      #!/bin/sh
+      rsync -avz /data/ /sync --delete
