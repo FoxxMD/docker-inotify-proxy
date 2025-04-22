@@ -15,6 +15,9 @@ if [ -z "${INOTIFY_SCRIPT+x}" ]; then
 fi
 
 if [ "$1" = "inotify-script" ]; then
+    chmod +x "${INOTIFY_SCRIPT}"
+    echo "[$(date -Iseconds)] inotify_proxy watching ${INOTIFY_TARGET}"
+    nohup inotify_proxy "${INOTIFY_TARGET}" > program.out 2>&1 &
     echo "[$(date -Iseconds)] running ${INOTIFYWAIT_SCRIPT}"
     exec "${INOTIFYWAIT_SCRIPT}" "${INOTIFY_TARGET}" "${INOTIFY_SCRIPT}"
 else
