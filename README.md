@@ -1,5 +1,7 @@
 # docker-inotify-proxy
 
+[Dockerhub Image `foxxmd/inotify-proxy`](https://hub.docker.com/r/foxxmd/inotify-proxy)
+
 **The poor man's unidirectional file syncing**
 
 This image is mostly based on [docker-inotify](https://github.com/devodev/docker-inotify) but with [`inotify-proxy`](https://github.com/cmuench/inotify-proxy) to enable usage with NFS docker volumes.
